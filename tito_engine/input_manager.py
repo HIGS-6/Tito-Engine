@@ -6,6 +6,17 @@ class InputManager:
     """Manages the game input."""
 
     @staticmethod
+    def get_mouse_button(btn: int) -> bool:
+        """
+        * Left Mouse Button: 0
+        * Right Mouse Button: 1
+        * Middle Mouse Button: 2
+        """
+        pressed_keys = mouse.get_pressed()
+
+        return bool(pressed_keys[btn])
+
+    @staticmethod
     def get_key_down(key: key) -> bool:
         for ev in event.get():
             if ev.type == KEYDOWN:
@@ -32,4 +43,4 @@ class InputManager:
 
     @staticmethod
     def get_mouse_pos() -> Vec2:
-        return Vec2(mouse.get_pos())
+        return Vec2(mouse.get_pos()[0], mouse.get_pos()[1])
