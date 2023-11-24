@@ -34,19 +34,28 @@ class Vec2():
         return f"({self.x} , {self.y})"
 
     def normalize(self):
-        length = sqrt(self.x**2 + self.y**2)
-        if length != 0:
-            return Vec2(self.x / length, self.y / length)
+        if lenght := self.magnitude() != 0:
+            return Vec2(self.x / lenght, self.y / lenght)
         return self
 
-    @property
+    def magnitude(self) -> float:
+        """
+        Calculates the 'lenght' of the vector
+        """
+        return sqrt(self.x ** 2 + self.y ** 2)
+    
+    @staticmethod
+    def Distance(a, b) -> float:
+        return (a - b).magnitude()
+
+    @staticmethod
     def ZERO():
         return Vec2(0, 0)
 
-    @property
+    @staticmethod
     def RIGHT():
         return Vec2(1, 0)
 
-    @property
+    @staticmethod
     def UP():
         return Vec2(0, 1)

@@ -10,11 +10,11 @@ class World:
     def game_objects(self) -> list[GameObject]:
         return self.__game_objects
 
-    def find_obj_by_tag(tag: str = '') -> GameObject:
-        ...
+    def find_obj_by_tag(self, tag: str = '') -> GameObject:
+        return [obj for obj in self.__game_objects if obj.tag == tag][0]
     
-    def find_objs_by_tag(tag: str = '') -> list[GameObject]:
-        ...
+    def find_objs_by_tag(self, tag: str = '') -> list[GameObject]:
+        return [obj for obj in self.__game_objects if obj.tag == tag]
 
     def instantiate(self, new_object: GameObject) -> GameObject:
         self.__game_objects.append(new_object)

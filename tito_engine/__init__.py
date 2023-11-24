@@ -26,7 +26,7 @@ class TitoEngine:
     def __init__(self, win_title: str = 'Tito Engine Game', win_resolution: tuple[int, int] = (1080, 720), colour_fill: tuple[int, int, int] = (255, 255, 255), fps: int = 60):
         pg.display.set_caption(win_title)
 
-        self.WIN = pg.display.set_mode(win_resolution)
+        self.WIN = pg.display.set_mode(win_resolution, pg.RESIZABLE)
         self.CLOCK = pg.time.Clock()
         self.FPS = fps
         self.COLOUR_FILL = colour_fill

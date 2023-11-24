@@ -13,7 +13,7 @@ class Sprite(GameObject):
         self.image = self.original_img
 
         self.image = rotozoom(
-            self.original_img, self.previous_rot, self.transform.scale
+            self.original_img, self.transform.rotation, self.transform.scale
         )
         self.rect = self.image.get_rect(
             center=(self.transform.position.x, self.transform.position.y)
@@ -21,10 +21,10 @@ class Sprite(GameObject):
 
     def update(self, world):
         if self.previous_rot != self.transform.rotation:
-            self.image = rotozoom(
-                self.original_img, self.previous_rot, self.transform.scale
-            )
             self.previous_rot = self.transform.rotation
+            self.image = rotozoom(
+                self.original_img, self.transform.rotation, self.transform.scale
+            )
 
         self.rect = self.image.get_rect(
             center=(self.transform.position.x, self.transform.position.y)

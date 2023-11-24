@@ -1,4 +1,4 @@
-from pygame import key, mouse, event, KEYDOWN
+from pygame import key as k, mouse, event, KEYDOWN
 from .vec2 import Vec2
 
 
@@ -17,20 +17,20 @@ class InputManager:
         return bool(pressed_keys[btn])
 
     @staticmethod
-    def get_key_down(key: key) -> bool:
+    def get_key_down(key: k) -> bool:
         for ev in event.get():
             if ev.type == KEYDOWN:
                 return ev.key == key
 
     @staticmethod
-    def get_key(key: key) -> bool:
-        pressed_keys = key.get_pressed()
+    def get_key(key: k) -> bool:
+        pressed_keys = k.get_pressed()
 
         return bool(pressed_keys[key])
 
     @staticmethod
-    def get_axis(pos_value: key, neg_value: key) -> int:
-        pressed_keys = key.get_pressed()
+    def get_axis(pos_value: k, neg_value: k) -> int:
+        pressed_keys = k.get_pressed()
 
         val = 0
 

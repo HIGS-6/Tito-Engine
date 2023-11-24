@@ -1,4 +1,4 @@
-from math import cos, sin, radians
+from math import cos, sin, radians, degrees, atan2
 from .vec2 import Vec2
 
 
@@ -54,10 +54,19 @@ class Transform:
     def translate(self, new_pos: Vec2):
         self._position += new_pos
 
-    def forward(self) -> Vec2:
-        frw_vec = Vec2.ZERO
+    def look_at(self, look_pos: Vec2):
+        rel_x, rel_y = look_pos.x - \
+            self.position.x, look_pos.y - self.position.y
 
-        frw_vec.x = round(sin(radians(self._rotation)), 2)
-        frw_vec.y = round(cos(radians(self._rotation)), 2)
+        angle = degrees(-atan2(rel_y, rel_x))
+
+        self.rotation = round(angle, 2)
+
+    def forward(self) -> Vec2:
+        # Calculate the look angle and rotate the sprite
+        frw_vec = Vec2()
+
+        frw_vec.x = round(sin(radians(self.rotation + 90)), 2)
+        frw_vec.y = round(cos(radians(self.rotation + 90)), 2)
 
         return frw_vec
